@@ -105,10 +105,13 @@ public class SinemaIslemleri extends javax.swing.JFrame implements IYonetici{
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        txtSehirArama = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtSinemaArama = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sinema İşlemleri");
-        setPreferredSize(new java.awt.Dimension(980, 600));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -307,6 +310,26 @@ public class SinemaIslemleri extends javax.swing.JFrame implements IYonetici{
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 170, -1, -1));
 
+        jLabel2.setText("Ara :");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 40, -1));
+
+        txtSehirArama.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSehirAramaKeyReleased(evt);
+            }
+        });
+        getContentPane().add(txtSehirArama, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 290, -1));
+
+        jLabel4.setText("Ara :");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, -1, -1));
+
+        txtSinemaArama.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSinemaAramaKeyReleased(evt);
+            }
+        });
+        getContentPane().add(txtSinemaArama, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, 300, -1));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -372,6 +395,16 @@ public class SinemaIslemleri extends javax.swing.JFrame implements IYonetici{
         tabloBaglantiGoster();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void txtSehirAramaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSehirAramaKeyReleased
+        search();
+        tabloSehirGoster();
+    }//GEN-LAST:event_txtSehirAramaKeyReleased
+
+    private void txtSinemaAramaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSinemaAramaKeyReleased
+        search2();
+        tabloSinemaGoster();
+    }//GEN-LAST:event_txtSinemaAramaKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -420,7 +453,9 @@ public class SinemaIslemleri extends javax.swing.JFrame implements IYonetici{
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -434,9 +469,11 @@ public class SinemaIslemleri extends javax.swing.JFrame implements IYonetici{
     private javax.swing.JTable tblSehir;
     private javax.swing.JTable tblSinema;
     private javax.swing.JLabel txtBaglantı;
+    private javax.swing.JTextField txtSehirArama;
     private javax.swing.JLabel txtSehirBilgi;
     private javax.swing.JTextField txtSinemaAdi;
     private javax.swing.JTextArea txtSinemaAdresi;
+    private javax.swing.JTextField txtSinemaArama;
     private javax.swing.JLabel txtSinemaBilgi;
     // End of variables declaration//GEN-END:variables
 private ArrayList<Sinemalar> getSehirler() throws SQLException{
@@ -857,6 +894,16 @@ private ArrayList<Sinemalar> getBaglantilar() throws SQLException{
 
     @Override
     public void search() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String searchKey = txtSehirArama.getText();
+        TableRowSorter<DefaultTableModel> tableRowSorter = new TableRowSorter<DefaultTableModel>(model);
+        tblSehir.setRowSorter(tableRowSorter);
+        tableRowSorter.setRowFilter(RowFilter.regexFilter(searchKey));
+         
+    }
+    public void search2() {
+        String searchKey = txtSinemaArama.getText();
+        TableRowSorter<DefaultTableModel> tableRowSorter = new TableRowSorter<DefaultTableModel>(model);
+        tblSinema.setRowSorter(tableRowSorter);
+        tableRowSorter.setRowFilter(RowFilter.regexFilter(searchKey));
     }
     }
