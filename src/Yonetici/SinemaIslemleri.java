@@ -81,8 +81,6 @@ public class SinemaIslemleri extends javax.swing.JFrame implements IYonetici{
         btnSehirEkle = new javax.swing.JButton();
         btnSehirSil = new javax.swing.JButton();
         btnSehirGuncelle = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        txtSehirArama = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblSehir = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
@@ -95,8 +93,6 @@ public class SinemaIslemleri extends javax.swing.JFrame implements IYonetici{
         btnSinemaEkle = new javax.swing.JButton();
         btnSinemaSil = new javax.swing.JButton();
         btnSinemaGüncelle = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        txtSinemaArama = new javax.swing.JTextField();
         txtSehirBilgi = new javax.swing.JLabel();
         txtSinemaBilgi = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -165,17 +161,6 @@ public class SinemaIslemleri extends javax.swing.JFrame implements IYonetici{
             }
         });
         getContentPane().add(btnSehirGuncelle, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 151, -1, -1));
-
-        jLabel4.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel4.setText("Ara :");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 217, 31, -1));
-
-        txtSehirArama.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtSehirAramaKeyReleased(evt);
-            }
-        });
-        getContentPane().add(txtSehirArama, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 214, 289, -1));
 
         tblSehir.setForeground(new java.awt.Color(0, 51, 102));
         tblSehir.setModel(new javax.swing.table.DefaultTableModel(
@@ -260,17 +245,6 @@ public class SinemaIslemleri extends javax.swing.JFrame implements IYonetici{
             }
         });
         getContentPane().add(btnSinemaGüncelle, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, -1, -1));
-
-        jLabel2.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel2.setText("Ara :");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(366, 217, 31, -1));
-
-        txtSinemaArama.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtSinemaAramaKeyReleased(evt);
-            }
-        });
-        getContentPane().add(txtSinemaArama, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 214, 330, -1));
         getContentPane().add(txtSehirBilgi, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 493, 338, 18));
         getContentPane().add(txtSinemaBilgi, new org.netbeans.lib.awtextra.AbsoluteConstraints(366, 493, 358, 18));
 
@@ -344,11 +318,6 @@ public class SinemaIslemleri extends javax.swing.JFrame implements IYonetici{
         pencere.sinemaIslem=this;
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void txtSehirAramaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSehirAramaKeyReleased
-       search();
-       tabloSehirGoster();
-    }//GEN-LAST:event_txtSehirAramaKeyReleased
-
     private void btnSehirEkleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSehirEkleActionPerformed
        txtSehirBilgi.setText("");
        add();
@@ -372,11 +341,6 @@ public class SinemaIslemleri extends javax.swing.JFrame implements IYonetici{
        add2();
        tabloSinemaGoster();
     }//GEN-LAST:event_btnSinemaEkleActionPerformed
-
-    private void txtSinemaAramaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSinemaAramaKeyReleased
-         search2();
-         tabloSinemaGoster();
-    }//GEN-LAST:event_txtSinemaAramaKeyReleased
 
     private void btnSinemaSilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSinemaSilActionPerformed
         txtSinemaBilgi.setText("");
@@ -456,9 +420,7 @@ public class SinemaIslemleri extends javax.swing.JFrame implements IYonetici{
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -472,11 +434,9 @@ public class SinemaIslemleri extends javax.swing.JFrame implements IYonetici{
     private javax.swing.JTable tblSehir;
     private javax.swing.JTable tblSinema;
     private javax.swing.JLabel txtBaglantı;
-    private javax.swing.JTextField txtSehirArama;
     private javax.swing.JLabel txtSehirBilgi;
     private javax.swing.JTextField txtSinemaAdi;
     private javax.swing.JTextArea txtSinemaAdresi;
-    private javax.swing.JTextField txtSinemaArama;
     private javax.swing.JLabel txtSinemaBilgi;
     // End of variables declaration//GEN-END:variables
 private ArrayList<Sinemalar> getSehirler() throws SQLException{
@@ -553,20 +513,7 @@ private ArrayList<Sinemalar> getBaglantilar() throws SQLException{
         }
         return baglantilar;
     }
-    @Override
-    public void search() {
-        String searchKey = txtSehirArama.getText();
-        TableRowSorter<DefaultTableModel> tableRowSorter = new TableRowSorter<DefaultTableModel>(model);
-        tblSehir.setRowSorter(tableRowSorter);
-        tableRowSorter.setRowFilter(RowFilter.regexFilter(searchKey));
-         
-    }
-    public void search2() {
-        String searchKey = txtSinemaArama.getText();
-        TableRowSorter<DefaultTableModel> tableRowSorter = new TableRowSorter<DefaultTableModel>(model);
-        tblSinema.setRowSorter(tableRowSorter);
-        tableRowSorter.setRowFilter(RowFilter.regexFilter(searchKey));
-    }
+    
 
     @Override
     public void add() {
@@ -738,8 +685,7 @@ private ArrayList<Sinemalar> getBaglantilar() throws SQLException{
          } catch (SQLException ex) {
               System.out.println(ex.getMessage());
          }
-     }
-        
+     } 
     }
     
     public void delete3() {
@@ -907,5 +853,10 @@ private ArrayList<Sinemalar> getBaglantilar() throws SQLException{
              System.out.println(ex.getMessage());
          }
     }   
+    }
+
+    @Override
+    public void search() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     }
